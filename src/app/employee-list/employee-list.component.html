@@ -1,0 +1,44 @@
+
+
+<div class="container mt-3">
+  <button class="btn btn-success" style="float: right;" [routerLink]="['/employee/add']">Add Employee</button>
+</div>
+<h2>Employee List</h2>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.gender }}</td>
+        <td>
+          <a class="edit-link" [routerLink]="['/employee/edit', employee.id]"> <i class="fas fa-edit"></i></a>
+          <button class="delete-btn" (click)="deleteEmployee(employee)"> <i class="fas fa-trash-alt"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="employeeToDelete" class="overlay">
+    <div class="confirmation-dialog">
+      <p>{{ deleteMessage }}</p>
+      <button (click)="confirmDelete()">Yes</button>
+      <button (click)="cancelDelete()">No</button>
+    </div>
+  </div>
+
+  <div *ngIf="deleteMessageVisible" class="overlay">
+    <div class="delete-success-message">
+      <p>{{ deleteMessage }}</p>
+    </div>
+  </div>
+</div>
+
+

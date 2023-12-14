@@ -1,0 +1,28 @@
+
+  <h2 class="form-heading mt-3">{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h2>
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form mt-4">
+  <input type="hidden" formControlName="id" *ngIf="isEditMode">
+
+  <label for="id">ID:</label>
+  <input type="number" id="id" formControlName="id" required>
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" formControlName="name" required>
+
+  
+  <label>Gender:</label>
+  <div>
+    <label>
+      <input type="radio" formControlName="gender" value="male"> Male
+    </label>
+    <label>
+      <input type="radio" formControlName="gender" value="female"> Female
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="!employeeForm.valid" class="submit-button">
+    {{ isEditMode ? 'Update' : 'Add' }}
+  </button>
+</form>
+
+
